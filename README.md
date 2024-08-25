@@ -24,13 +24,24 @@ If you find this package useful, I would love to hear from you. Contributions, s
 
 Let's build something great together!
 
-## Installation
+## Getting Started
+
+### Prerequisites
+
+- .NET 8.0 or later
+- Basic knowledge of Aspire and Neo4j
+
+### Installation
 
 You can install this package via NuGet:
 
 ```bash
 dotnet add package NorthernNerds.Aspire.Neo4
 ```
+
+### Example Project
+
+For a practical implementation of this package, check out the [Example Project](example) included in this repository. It demonstrates how to set up and use `NorthernNerds.Aspire.Neo4` in a real-world scenario.
 
 ## Usage
 
@@ -95,7 +106,6 @@ public class MyService
 ## Documentation
 
 - [Release Guide](docs/RELEASE_GUIDE.md): Instructions on how to release a new version of the package.
-
 
 ## Contributing
 
