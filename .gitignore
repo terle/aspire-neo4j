@@ -1,0 +1,2 @@
+# add nuget folder to gitignore, tp prevent actideital commit in case the package is build locally
+nuget/
