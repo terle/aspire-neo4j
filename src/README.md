@@ -21,6 +21,16 @@ var neo4jUser = builder.AddParameter("neo4j-user", secret: true);
 //add neo4j resource
 var neo4jDb = builder.AddNeo4j("graph-db", neo4jUser, neo4jPass);
 ```
+For local development, add the parameters to `appsettings.json`:
+```json
+{
+	......
+  "Parameters": {
+    "neo4j-pass": "Password",
+    "neo4j-user": "neo4j"
+  }
+}
+```
 
 Then in "client" code, add the Neo4j client:
 
