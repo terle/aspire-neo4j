@@ -60,8 +60,6 @@ public class MyService(IDriver driver)
 }
 ```
 
-For more detailed documentation, please visit the [GitHub repository](https://github.com/terle/aspire-neo4j).
-
 ## Contributing
 
 Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) for details.
