@@ -1,7 +1,7 @@
 ﻿using Neo4j.Driver;
 using System.Data.Common;
 
-namespace NorthernNerds.Aspire.Neo4jComponent.Client;
+namespace NorthernNerds.Aspire.Neo4j.Client;
 
 // Note: Heavily inspired by: https://learn.microsoft.com/en-us/dotnet/aspire/extensibility/custom-component
 

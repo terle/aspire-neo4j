@@ -1,7 +1,7 @@
 ﻿using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 
-namespace NorthernNerds.Aspire.Neo4jComponent.Hosting;
+namespace NorthernNerds.Aspire.Neo4j.Hosting;
 
 /// <summary>
 /// Provides extension methods for adding and configuring Neo4j resources in a distributed application.

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Neo4j.Driver;
 
-namespace NorthernNerds.Aspire.Neo4jComponent.Client;
+namespace NorthernNerds.Aspire.Neo4j.Client;
 
 /// <summary>
 /// Provides extension methods for registering Neo4j client services.
@@ -25,7 +25,7 @@ public static class Neo4jClientExtensions
     /// An optional delegate that can be used for customizing options.
     /// It's invoked after the settings are read from the configuration.
     /// </param>
-    public static void AddNeo4jClient(this IHostApplicationBuilder builder, string connectionName, Action<Neo4jClientSettings>? configureSettings = null) => AddNeo4jClient(builder, Neo4jClientSettings.DefaultConfigSectionName, configureSettings, connectionName, serviceKey: null);
+    public static void AddNeo4jClient(this IHostApplicationBuilder builder, string connectionName, Action<Neo4jClientSettings>? configureSettings = null) => builder.AddNeo4jClient(Neo4jClientSettings.DefaultConfigSectionName, configureSettings, connectionName, serviceKey: null);
 
     /// <summary>
     /// Registers a singleton <see cref="IDriver"/> to interact with the Neo4j database using a keyed service.
@@ -45,8 +45,7 @@ public static class Neo4jClientExtensions
     {
         ArgumentNullException.ThrowIfNull(name);
 
-        AddNeo4jClient(
-            builder,
+        builder.AddNeo4jClient(
             $"{Neo4jClientSettings.DefaultConfigSectionName}:{name}",
             configureSettings,
             connectionName: name,

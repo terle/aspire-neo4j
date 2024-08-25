@@ -1,6 +1,6 @@
 ﻿using Aspire.Hosting.ApplicationModel;
 
-namespace NorthernNerds.Aspire.Neo4jComponent.Hosting;
+namespace NorthernNerds.Aspire.Neo4j.Hosting;
 
 /// <summary>
 /// Represents a Neo4j resource within the Aspire hosting environment.
