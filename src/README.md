@@ -1,30 +1,24 @@
-# Neo4j Aspire Component
+# NorthernNerds.Aspire.Neo4
 
-**NorthernNerds.Aspire.Neo4j** is an **unofficial** Aspire component for integrating Neo4j in [dotnet Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). 
+**NorthernNerds.Aspire.Neo4** is an **unofficial** Aspire component for integrating Neo4j in [dotnet Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). This package simplifies working with Neo4j within Aspire-based applications by creating a Neo4j container and injecting an `IDriver` into the DI.
 
-This package simplifies working with Neo4j within Aspire-based applications by creating a Neo4j container and injecting an `IDriver` in the DI from an officially supported [.Net driver](https://neo4j.com/docs/getting-started/languages-guides/neo4j-dotnet/) from Neo4j.
+## Quick Start
 
-## Usage
+Add the Neo4j resource in `AppHost`:
 
-Here’s a quick example of how to use the `NorthernNerds.Aspire.Neo4j` in your project:
-
-In AppHost, add the resource:
 ```csharp
-using NorthernNerds.Aspire.Neo4j;
+using NorthernNerds.Aspire.Neo4;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-//username and password are secrets
-var neo4jPass = builder.AddParameter("neo4j-pass", secret: true);
-var neo4jUser = builder.AddParameter("neo4j-user", secret: true);
-
-//add neo4j resource
-var neo4jDb = builder.AddNeo4j("graph-db", neo4jUser, neo4jPass);
+// Add Neo4j resource
+var neo4jDb = builder.AddNeo4j("graph-db", "neo4j-user", "neo4j-pass");
 ```
-For local development, add the parameters to `appsettings.json`:
+
+Configure parameters in `appsettings.json` for local development:
+
 ```json
 {
-	......
   "Parameters": {
     "neo4j-pass": "Password",
     "neo4j-user": "neo4j"
@@ -32,29 +26,38 @@ For local development, add the parameters to `appsettings.json`:
 }
 ```
 
-Then in "client" code, add the Neo4j client:
+Add the Neo4j client in your "client" code:
 
 ```csharp
-using NorthernNerds.Aspire.Neo4j;
+using NorthernNerds.Aspire.Neo4;
 
 builder.AddNeo4jClient("graph-db");
 ```
 
-This will registre an `IDriver` as singleton in the service collectionm, which can be injected into services.
+Inject the `IDriver` into your services:
 
 ```csharp
 using Neo4j.Driver;
 
-public class MyService(IDriver driver)
+public class MyService
 {
-	public async Task DoSomething()
-	{
-		var session = driver.AsyncSession();
-		await session.RunAsync("MATCH (n) RETURN n");
-	}
+    private readonly IDriver _driver;
+
+    public MyService(IDriver driver)
+    {
+        _driver = driver;
+    }
+
+    public async Task DoSomething()
+    {
+        var session = _driver.AsyncSession();
+        await session.RunAsync("MATCH (n) RETURN n");
+    }
 }
 ```
 
+For more details, visit the [GitHub repository](https://github.com/YourGitHubRepoURL).
+
 ## About Northern Nerds
 
-Northern Nerds is a one-man freelance software company dedicated to creating high-quality software solutions and tools. Follow our work to stay updated on the latest projects and contributions.
+Northern Nerds is a one-man freelance software company focused on delivering quality software tools. Follow our work to stay updated on the latest projects.
