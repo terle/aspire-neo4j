@@ -1,5 +1,12 @@
 # NorthernNerds.Aspire.Neo4
 
+![Build Status](https://github.com/terle/aspire-neo4j/actions/workflows/publish.yml/badge.svg)
+![NuGet Version](https://img.shields.io/nuget/v/NorthernNerds.Aspire.Neo4j.svg)
+![NuGet Downloads](https://img.shields.io/nuget/dt/NorthernNerds.Aspire.Neo4j.svg)
+![License](https://img.shields.io/github/license/terle/aspire-neo4j.svg)
+![GitHub Issues](https://img.shields.io/github/issues/terle/aspire-neo4j.svg)
+![GitHub Stars](https://img.shields.io/github/stars/terle/aspire-neo4j.svg)
+
 **NorthernNerds.Aspire.Neo4** is an **unofficial** Aspire component for integrating Neo4j into [dotnet Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). This package simplifies working with Neo4j within Aspire-based applications by creating a Neo4j container and injecting an `IDriver` in the DI from the officially supported [.Net driver](https://neo4j.com/docs/getting-started/languages-guides/neo4j-dotnet/) by Neo4j.
 
 ## Features
