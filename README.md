@@ -7,6 +7,16 @@
 - Supports adding Neo4j as a resource and injecting `IDriver` into your services.
 - Simple setup for local development with easy configuration using `appsettings.json`.
 
+## Why This Package?
+
+This package is my first contribution to the developer community. I created it because I needed an easy way to integrate Neo4j with the Aspire framework, and I wanted to share this solution with others who might have similar needs.
+
+I believe in the potential of Aspire and love working with graph databases. By sharing this package, I hope to make it easier for other developers to include Neo4j in their projects, and to contribute to the growth of the Aspire ecosystem.
+
+If you find this package useful, I would love to hear from you. Contributions, suggestions, and feedback are always welcome!
+
+Let's build something great together!
+
 ## Installation
 
 You can install this package via NuGet:
@@ -75,13 +85,18 @@ public class MyService
 }
 ```
 
+## Documentation
+
+- [Release Guide](docs/RELEASE_GUIDE.md): Instructions on how to release a new version of the package.
+
+
 ## Contributing
 
-Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute.
+Contributions are welcome! Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how to contribute.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## About Northern Nerds
 
