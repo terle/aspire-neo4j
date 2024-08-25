@@ -7,7 +7,7 @@
 
 		<!-- NuGet Package Metadata -->
 		<PackageId>NorthernNerds.Aspire.Neo4j</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>terle,Northern Nerds</Authors>
 		<Company>Northern Nerds</Company>
 		<Description>An unofficial Aspire component for integrating Neo4j, developed by Northern Nerds.</Description>
