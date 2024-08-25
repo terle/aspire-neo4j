@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="8.1.0" />
+    <PackageReference Include="NorthernNerds.Aspire.Neo4j" Version="1.0.0-alpha.2" />
   </ItemGroup>
 
 </Project>

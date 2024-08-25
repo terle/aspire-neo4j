@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NorthernNerds.Aspire.Neo4j" Version="1.0.0-alpha.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AspireApp1.ServiceDefaults\AspireApp1.ServiceDefaults.csproj" />
   </ItemGroup>
 
