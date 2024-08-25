@@ -2,8 +2,8 @@ name: Publish NuGet Package
 
 on:
   push:
-    branches:
-      - main  # Trigger on pushes to the main branch
+    tags:
+      - 'v*.*.*'  # Trigger on tags following the pattern v1.0.0
 
 jobs:
   build:
