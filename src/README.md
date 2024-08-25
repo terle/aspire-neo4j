@@ -4,21 +4,6 @@
 
 This package simplifies working with Neo4j within Aspire-based applications by creating a Neo4j container and injecting an `IDriver` in the DI from an officially supported [.Net driver](https://neo4j.com/docs/getting-started/languages-guides/neo4j-dotnet/) from Neo4j.
 
-## Features
-
-- **Neo4j Integration**: Seamlessly integrates Neo4j with the Aspire framework.
-- **Custom Resources**: Provides custom resources and components tailored for Neo4j.
-- **Extension Methods**: Includes useful extension methods for configuring the Neo4j client.
-- **Easy Setup**: Simple API for interacting with Neo4j within Aspire.
-
-## Installation
-
-You can install this package via NuGet:
-
-```bash
-dotnet add package NorthernNerds.Aspire.Neo4j
-```
-
 ## Usage
 
 Here’s a quick example of how to use the `NorthernNerds.Aspire.Neo4j` in your project:
@@ -59,16 +44,6 @@ public class MyService(IDriver driver)
 	}
 }
 ```
-
-For more detailed documentation, please visit the [GitHub repository](https://github.com/terle/aspire-neo4j).
-
-## Contributing
-
-Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## About Northern Nerds
 

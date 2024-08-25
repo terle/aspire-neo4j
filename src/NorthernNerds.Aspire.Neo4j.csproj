@@ -6,21 +6,28 @@
 		<Nullable>enable</Nullable>
 
 		<!-- NuGet Package Metadata -->
-		<PackageId>NorthernNerds.Aspire.Neo4jComponent</PackageId>
-		<Version>1.0.0</Version>
-		<Authors>Northern Nerds</Authors>
+		<PackageId>NorthernNerds.Aspire.Neo4j</PackageId>
+		<Version>1.0.0-alpha.3</Version>
+		<Authors>terle,Northern Nerds</Authors>
 		<Company>Northern Nerds</Company>
 		<Description>An unofficial Aspire component for integrating Neo4j, developed by Northern Nerds.</Description>
 		<PackageTags>aspire;neo4j;component;northern nerds</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/terle/aspire-neo4j</RepositoryUrl>
 		<LicenseUrl>https://choosealicense.com/licenses/mit/</LicenseUrl>
-		<!--<ProjectUrl>https://github.com/YourGitHubRepoURL</ProjectUrl>
-		--><!-- Replace with your project's website or documentation -->
-		<IconUrl>https://raw.githubusercontent.com/terle/aspire-neo4j/main/neo4j-icon.png</IconUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright © Northern Nerds 2024</Copyright>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Neo4j Aspire Component by Northern Nerds</Title>
+		<PackageIcon>neo4j-icon.png</PackageIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\neo4j-icon.png" Pack="true" PackagePath="\" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Aspire.Hosting" Version="8.1.0" />
