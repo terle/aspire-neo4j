@@ -36,21 +36,21 @@ Let's build something great together!
 You can install this package via NuGet:
 
 ```bash
-dotnet add package NorthernNerds.Aspire.Neo4
+dotnet add package NorthernNerds.Aspire.Neo4j
 ```
 
 ### Example Project
 
-For a practical implementation of this package, check out the [Example Project](example) included in this repository. It demonstrates how to set up and use `NorthernNerds.Aspire.Neo4` in a real-world scenario.
+For a practical implementation of this package, check out the [Example Project](example) included in this repository. It demonstrates how to set up and use `NorthernNerds.Aspire.Neo4j` in a real-world scenario.
 
 ## Usage
 
-Here’s a quick example of how to use `NorthernNerds.Aspire.Neo4` in your project:
+Here’s a quick example of how to use `NorthernNerds.Aspire.Neo4j` in your project:
 
 In `AppHost`, add the resource:
 
 ```csharp
-using NorthernNerds.Aspire.Neo4;
+using NorthernNerds.Aspire.Neo4j;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -76,7 +76,7 @@ For local development, add the parameters to `appsettings.json`:
 Then in the "client" code, add the Neo4j client:
 
 ```csharp
-using NorthernNerds.Aspire.Neo4;
+using NorthernNerds.Aspire.Neo4j;
 
 builder.AddNeo4jClient("graph-db");
 ```
