@@ -1,4 +1,4 @@
-# NorthernNerds.Aspire.Neo4
+# NorthernNerds.Aspire.Neo4j
 
 ![Build Status](https://github.com/terle/aspire-neo4j/actions/workflows/publish.yml/badge.svg)
 ![NuGet Version](https://img.shields.io/nuget/v/NorthernNerds.Aspire.Neo4j.svg)
