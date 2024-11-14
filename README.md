@@ -7,7 +7,7 @@
 ![GitHub Issues](https://img.shields.io/github/issues/terle/aspire-neo4j.svg)
 ![GitHub Stars](https://img.shields.io/github/stars/terle/aspire-neo4j.svg)
 
-**NorthernNerds.Aspire.Neo4j** is an **unofficial** Aspire component for integrating Neo4j into [dotnet Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). This package simplifies working with Neo4j within Aspire-based applications by creating a Neo4j container and injecting an `IDriver` in the DI from the officially supported [.Net driver](https://neo4j.com/docs/getting-started/languages-guides/neo4j-dotnet/) by Neo4j.
+**NorthernNerds.Aspire.Neo4j** is an **unofficial** Aspire integration for integrating Neo4j into [dotnet Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). This package simplifies working with Neo4j within Aspire-based applications by creating a Neo4j container and injecting an `IDriver` in the DI from the officially supported [.Net driver](https://neo4j.com/docs/getting-started/languages-guides/neo4j-dotnet/) by Neo4j.
 
 ## Features
 - Seamless integration of Neo4j with Aspire.
@@ -24,13 +24,24 @@ If you find this package useful, I would love to hear from you. Contributions, s
 
 Let's build something great together!
 
-## Installation
+## Getting Started
+
+### Prerequisites
+
+- .NET 8.0 or later
+- Basic knowledge of Aspire and Neo4j
+
+### Installation
 
 You can install this package via NuGet:
 
 ```bash
 dotnet add package NorthernNerds.Aspire.Neo4
 ```
+
+### Example Project
+
+For a practical implementation of this package, check out the [Example Project](example) included in this repository. It demonstrates how to set up and use `NorthernNerds.Aspire.Neo4` in a real-world scenario.
 
 ## Usage
 
@@ -95,7 +106,6 @@ public class MyService
 ## Documentation
 
 - [Release Guide](docs/RELEASE_GUIDE.md): Instructions on how to release a new version of the package.
-
 
 ## Contributing
 

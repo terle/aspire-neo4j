@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'  # Specify the version of .NET you are using
+          dotnet-version: '9.x'  # Specify the version of .NET you are using
 
       - name: Restore dependencies
         run: dotnet restore src/NorthernNerds.Aspire.Neo4j.csproj
