@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- NuGet Package Metadata -->
+		<PackageId>NorthernNerds.Aspire.Neo4j</PackageId>
+		<Version>2.0.0-alpha</Version>
+		<Authors>terle,Northern Nerds</Authors>
+		<Company>Northern Nerds</Company>
+		<Description>An unofficial .NET Aspire integration for Neo4j that provides client configuration and dependency injection of the Neo4j IDriver. Part of the NorthernNerds.Aspire.Neo4j suite for seamless Neo4j integration in Aspire applications.</Description>
+		<PackageTags>aspire;neo4j;dotnet-aspire;aspire-integration;graphdb;nosql;database;northern-nerds</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<LicenseUrl>https://choosealicense.com/licenses/mit/</LicenseUrl>
+
+		<!-- Source Link -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+
+		<!-- Repository Info -->
+		<RepositoryUrl>https://github.com/terle/aspire-neo4j</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<!-- Additional Metadata -->
+		<PackageProjectUrl>https://github.com/terle/aspire-neo4j</PackageProjectUrl>
+		<PackageIcon>neo4j-icon.png</PackageIcon>
+		<Copyright>Copyright © Northern Nerds 2024</Copyright>
+		<Title>Neo4j Client Integration for .NET Aspire</Title>
+
+		<!-- Package Generation -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\assets\neo4j-icon.png" Pack="true" PackagePath="\" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
+		<PackageReference Include="Neo4j.Driver" Version="5.26.1" />
+	</ItemGroup>
+
+</Project>

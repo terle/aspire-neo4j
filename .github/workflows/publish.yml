@@ -1,33 +1,53 @@
-name: Publish NuGet Package
+name: Publish NuGet Packages
+
+env:
+  DOTNET_VERSION: '9.x'
+  CONFIG: 'Release'
+  PACKAGE_OUTPUT: './nupkg'
+  CLIENT_PROJECT: 'src/Client/NorthernNerds.Aspire.Neo4j.csproj'
+  HOSTING_PROJECT: 'src/Hosting/NorthernNerds.Aspire.Hosting.Neo4j.csproj'
 
 on:
   push:
-    tags:
-      - 'v*.*.*'  # Trigger on tags following the pattern v1.0.0
+    tags: ['v*.*.*']
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - project: ${{ env.CLIENT_PROJECT }}
+            name: 'Client Package'
+          - project: ${{ env.HOSTING_PROJECT }}
+            name: 'Hosting Package'
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
+      
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.x'  # Specify the version of .NET you are using
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Restore dependencies
-        run: dotnet restore src/NorthernNerds.Aspire.Neo4j.csproj
+      - name: Build and Pack
+        run: |
+          dotnet restore "${{ matrix.project }}"
+          dotnet build "${{ matrix.project }}" --configuration ${{ env.CONFIG }} --no-restore
+          dotnet pack "${{ matrix.project }}" --configuration ${{ env.CONFIG }} --no-build --output ${{ env.PACKAGE_OUTPUT }}
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore src/NorthernNerds.Aspire.Neo4j.csproj
-
-      - name: Pack
-        run: dotnet pack --configuration Release --no-restore --output ./nupkg src/NorthernNerds.Aspire.Neo4j.csproj
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: nuget-${{ matrix.name }}
+          path: ${{ env.PACKAGE_OUTPUT }}/*.nupkg
+          retention-days: 5
 
       - name: Push to NuGet
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push ./nupkg/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+        run: |
+          dotnet nuget push "${{ env.PACKAGE_OUTPUT }}/*.nupkg" \
+            --api-key $NUGET_API_KEY \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate

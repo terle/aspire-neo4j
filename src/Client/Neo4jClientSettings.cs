@@ -1,7 +1,7 @@
 ﻿using Neo4j.Driver;
 using System.Data.Common;
 
-namespace NorthernNerds.Aspire.Neo4j.Client;
+namespace NorthernNerds.Aspire.Neo4j;
 
 // Note: Heavily inspired by: https://learn.microsoft.com/en-us/dotnet/aspire/extensibility/custom-component
 
@@ -48,9 +48,7 @@ public sealed class Neo4jClientSettings
 
         // Try to create a URI from the connection string.
         if (Uri.TryCreate(connectionString, UriKind.Absolute, out var uri))
-        {
             Endpoint = uri;
-        }
         else
         {
             // If the connection string is not a valid URI, treat it as a DbConnectionString.

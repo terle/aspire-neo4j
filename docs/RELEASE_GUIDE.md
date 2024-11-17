@@ -1,47 +1,45 @@
+# Release Guide
 
-   # Release Guide
+This guide outlines the steps required to release new versions of the NorthernNerds.Aspire.Neo4j packages.
 
-   This guide outlines the steps required to release a new version of the `NorthernNerds.Aspire.Neo4j` NuGet package.
+## Package Structure
 
-   ## Triggering a New Build and Release
+We maintain two NuGet packages:
+- `NorthernNerds.Aspire.Neo4j` - Client integration
+- `NorthernNerds.Aspire.Hosting.Neo4j` - Hosting integration
 
-   The release process is automated through GitHub Actions and is triggered by pushing a new Git tag that follows the pattern `v*.*.*` (e.g., `v1.0.0`, `v1.1.0`).
+## Steps to Release a New Version
 
-   ### Steps to Release a New Version
+1. **Update Version Numbers**:
+   Update both project files with the same version number:
+   ```bash
+   src/Client/NorthernNerds.Aspire.Neo4j.csproj
+   src/Hosting/NorthernNerds.Aspire.Hosting.Neo4j.csproj
+   ```
+   ```xml
+   <PropertyGroup>
+     <Version>2.0.0</Version>
+   </PropertyGroup>
+   ```
 
-   1. **Update the Version Number**:
-      - Open the `src/NorthernNerds.Aspire.Neo4j.csproj` file.
-      - Update the `<Version>` element to reflect the new version number you want to release.
+2. **Commit Version Updates**:
+   ```bash
+   git add src/Client/NorthernNerds.Aspire.Neo4j.csproj
+   git add src/Hosting/NorthernNerds.Aspire.Hosting.Neo4j.csproj
+   git commit -m "Update version to 2.0.0"
+   ```
+3. **Create and Push Tag**:
+   ```bash
+   git tag v2.0.0
+   git push origin v2.0.0
+   ```
 
-      ```xml
-      <PropertyGroup>
-        <Version>1.1.0</Version>
-        <!-- Other properties -->
-      </PropertyGroup>
-      ```
+4. **Monitor Release**:
+ - The GitHub Actions workflow will build and publish both packages
+ - Monitor progress in the "Actions" tab on GitHub
 
-   2. **Commit the Version Update**:
-      - Commit your changes to the main branch.
+## Important Notes
 
-      ```bash
-      git add src/NorthernNerds.Aspire.Neo4j.csproj
-      git commit -m "Update version to 1.1.0"
-      ```
-
-   3. **Create and Push a New Tag**:
-      - Create a new tag with the version number.
-
-      ```bash
-      git tag v1.1.0
-      git push origin v1.1.0
-      ```
-
-   4. **Monitor the GitHub Actions Workflow**:
-      - After pushing the tag, the GitHub Actions workflow will automatically start. You can monitor the build and publish process in the "Actions" tab on GitHub.
-
-   ### Important Notes
-
-   - Ensure that the version number in the `.csproj` file matches the tag you create.
-   - The GitHub Actions workflow will only trigger on tags that follow the `v*.*.*` pattern.
-
-   For any further details, refer to the [nuget-publish.yml](../.github/workflows/nuget-publish.yml) file in the repository.
+- Both packages must share the same version number
+- Tag pattern must be `v*.*.*` (e.g., v2.0.0)
+- Versions follow SemVer (MAJOR.MINOR.PATCH)
