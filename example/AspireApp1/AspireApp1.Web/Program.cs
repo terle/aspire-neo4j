@@ -1,6 +1,6 @@
 using AspireApp1.Web;
 using AspireApp1.Web.Components;
-using NorthernNerds.Aspire.Neo4j.Client;
+using NorthernNerds.Aspire.Neo4j;
 
 var builder = WebApplication.CreateBuilder(args);
 

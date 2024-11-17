@@ -38,9 +38,9 @@ builder.AddNeo4jClient("graph-db");
 ```
 For more details, check the:
 
-- Example Project
-- Client Documentation
-- Hosting Documentation
+- [Example Project](example/README.md)
+- [Client Documentation](src/Client/README.md)
+- [Hosting Documentation](src/Hosting/README.md)
 
 
 ## Documentation

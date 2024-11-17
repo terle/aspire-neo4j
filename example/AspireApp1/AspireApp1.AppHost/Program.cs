@@ -1,4 +1,4 @@
-using NorthernNerds.Aspire.Neo4j.Hosting;
+using NorthernNerds.Aspire.Hosting.Neo4j;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
