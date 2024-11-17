@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Neo4j.Driver;
 
-namespace NorthernNerds.Aspire.Neo4j.Client;
+namespace NorthernNerds.Aspire.Neo4j;
 
 /// <summary>
 /// Provides extension methods for registering Neo4j client services.
@@ -85,9 +85,7 @@ public static class Neo4jClientExtensions
 
         // Retrieve the connection string from the configuration and parse it.
         if (builder.Configuration.GetConnectionString(connectionName) is string connectionString)
-        {
             settings.ParseConnectionString(connectionString);
-        }
 
         // Invoke the optional configuration delegate to customize settings.
         configureSettings?.Invoke(settings);
