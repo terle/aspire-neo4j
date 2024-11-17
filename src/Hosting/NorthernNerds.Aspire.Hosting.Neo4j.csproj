@@ -1,13 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting" Version="9.0.0" />
-  </ItemGroup>
+		<!-- NuGet Package Metadata -->
+		<PackageId>NorthernNerds.Aspire.Hosting.Neo4j</PackageId>
+		<Version>2.0.0-alpha</Version>
+		<Authors>terle,Northern Nerds</Authors>
+		<Company>Northern Nerds</Company>
+		<Description>An unofficial Aspire integration for Neo4j, developed by Northern Nerds.</Description>
+		<PackageTags>aspire;neo4j;dotnet-aspire;northern nerds;aspire-component</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/terle/aspire-neo4j</RepositoryUrl>
+		<LicenseUrl>https://choosealicense.com/licenses/mit/</LicenseUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Copyright>Copyright © Northern Nerds 2024</Copyright>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Neo4j Aspire Integration by Northern Nerds</Title>
+		<PackageIcon>neo4j-icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\neo4j-icon.png" Pack="true" PackagePath="\" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.Hosting" Version="9.0.0" />
+	</ItemGroup>
 
 </Project>

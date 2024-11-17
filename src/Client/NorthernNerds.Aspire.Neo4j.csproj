@@ -7,7 +7,7 @@
 
 		<!-- NuGet Package Metadata -->
 		<PackageId>NorthernNerds.Aspire.Neo4j</PackageId>
-		<Version>1.1.0</Version>
+		<Version>2.0.0-alpha</Version>
 		<Authors>terle,Northern Nerds</Authors>
 		<Company>Northern Nerds</Company>
 		<Description>An unofficial Aspire integration for Neo4j, developed by Northern Nerds.</Description>
@@ -26,7 +26,7 @@
 
 	<ItemGroup>
 		<None Include="..\..\neo4j-icon.png" Pack="true" PackagePath="\" />
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>		
