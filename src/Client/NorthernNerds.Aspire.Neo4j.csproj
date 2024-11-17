@@ -7,7 +7,7 @@
 
 		<!-- NuGet Package Metadata -->
 		<PackageId>NorthernNerds.Aspire.Neo4j</PackageId>
-		<Version>2.0.0-alpha</Version>
+		<Version>2.0.0</Version>
 		<Authors>terle,Northern Nerds</Authors>
 		<Company>Northern Nerds</Company>
 		<Description>An unofficial .NET Aspire integration for Neo4j that provides client configuration and dependency injection of the Neo4j IDriver. Part of the NorthernNerds.Aspire.Neo4j suite for seamless Neo4j integration in Aspire applications.</Description>
