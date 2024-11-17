@@ -1,4 +1,4 @@
-# NorthernNerds.Aspire.Neo4j
+# Neo4j Aspire Integration (Unofficial)
 
 ![Build Status](https://github.com/terle/aspire-neo4j/actions/workflows/publish.yml/badge.svg)
 
