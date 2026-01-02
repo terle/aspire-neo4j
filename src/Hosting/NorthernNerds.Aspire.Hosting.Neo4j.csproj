@@ -29,7 +29,7 @@
 		<!-- Additional Metadata -->
 		<PackageProjectUrl>https://github.com/terle/aspire-neo4j</PackageProjectUrl>
 		<PackageIcon>neo4j-icon.png</PackageIcon>
-		<Copyright>Copyright © Northern Nerds 2026</Copyright>
+		<Copyright>Copyright © Northern Nerds 2025</Copyright>
 		<Title>Neo4j Hosting Integration for .NET Aspire</Title>
 
 		<!-- Package Generation -->
