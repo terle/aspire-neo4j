@@ -8,8 +8,7 @@
     <UserSecretsId>818ffbd1-650b-4d5f-a469-7971f1cb7107</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>        
-    <ProjectReference Include="..\..\Hosting\NorthernNerds.Aspire.Hosting.Neo4j.csproj"  IsAspireProjectResource="false"/>        
-    <ProjectReference Include="..\AspireApp1.ApiService\AspireApp1.ApiService.csproj" />
+    <ProjectReference Include="..\..\Hosting\NorthernNerds.Aspire.Hosting.Neo4j.csproj" IsAspireProjectResource="false" />
     <ProjectReference Include="..\AspireApp1.Web\AspireApp1.Web.csproj" />
   </ItemGroup>
 </Project>

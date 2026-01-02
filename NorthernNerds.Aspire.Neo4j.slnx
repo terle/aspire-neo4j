@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/example/">
-    <Project Path="src/example/AspireApp1.ApiService/AspireApp1.ApiService.csproj" />
     <Project Path="src/example/AspireApp1.AppHost/AspireApp1.AppHost.csproj" />
     <Project Path="src/example/AspireApp1.ServiceDefaults/AspireApp1.ServiceDefaults.csproj" />
     <Project Path="src/example/AspireApp1.Web/AspireApp1.Web.csproj" />
