@@ -42,7 +42,7 @@ public static class Neo4jResourceBuilderExtensions
             .WithImage(Neo4jContainerImageTags.Image)
             .WithImageRegistry(Neo4jContainerImageTags.Registry)
             .WithImageTag(Neo4jContainerImageTags.Tag)
-            .WithEnvironment(AuthEnvVarName, $"{graphDb.UsernameParameter.Value}/{graphDb.PasswordParameter.Value}")
+            .WithEnvironment(AuthEnvVarName, $"{graphDb.UsernameParameter}/{graphDb.PasswordParameter}")
             .WithEndpoint(
                         targetPort: boltPort,
                         port: 7687,
