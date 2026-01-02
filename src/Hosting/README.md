@@ -11,6 +11,13 @@
 - Configure Neo4j connection settings through Aspire parameters
 - Automatic container management and configuration
 
+## Release notes
+
+### 3.0.0 (since v2.0.0)
+- Upgraded to .NET 10 and .NET Aspire 13.1
+- Enhanced `AddNeo4j` hosting integration (`[ResourceName]`, nullable ports, improved `NEO4J_AUTH` handling, endpoint refactor)
+- Example updated to wait for Neo4j readiness
+
 ## Getting Started
 
 ### Installation

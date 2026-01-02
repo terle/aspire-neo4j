@@ -7,7 +7,7 @@ This example project demonstrates how to integrate Neo4j with an Aspire applicat
 ## Getting Started
 
 ### Prerequisites
-- .NET 9.0 or later
+- .NET 10.0 or later
 - Docker (for running Neo4j container)
 - Visual Studio 2022 or VS Code
 
@@ -24,9 +24,14 @@ dotnet add package NorthernNerds.Aspire.Neo4j
 using NorthernNerds.Aspire.Hosting.Neo4j;
 
 var builder = DistributedApplication.CreateBuilder(args);
+
+var neo4jPass = builder.AddParameter("neo4j-pass", secret: true);
+var neo4jUser = builder.AddParameter("neo4j-user", secret: true);
+
 var neo4jDb = builder.AddNeo4j("graph-db", neo4jUser, neo4jPass);
 ```
-4. Add client in your service:
+
+3. Add client in your service:
 ```csharp
 using NorthernNerds.Aspire.Neo4j;
 
@@ -45,4 +50,4 @@ A demo component showing Neo4j integration:
 Access at `/graph` to see:
 - Real-time node creation
 - Data retrieval
-- Graph
+- Graph database operations in action

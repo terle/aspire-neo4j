@@ -75,28 +75,41 @@ public static class Neo4jClientExtensions
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        // Create a new instance of Neo4jClientSettings to hold the configuration settings.
         var settings = new Neo4jClientSettings();
 
-        // Bind the configuration section to the settings object.
         builder.Configuration
                .GetSection(configurationSectionName)
                .Bind(settings);
 
-        // Retrieve the connection string from the configuration and parse it.
         if (builder.Configuration.GetConnectionString(connectionName) is string connectionString)
             settings.ParseConnectionString(connectionString);
 
-        // Invoke the optional configuration delegate to customize settings.
         configureSettings?.Invoke(settings);
 
-        // Ensure that credentials are provided.
-        ArgumentNullException.ThrowIfNull(settings.Credentials);
+        if (serviceKey is null)
+        {
+            builder.Services.AddSingleton(CreateDriver);
+        }
+        else
+        {
+            builder.Services.AddKeyedSingleton(serviceKey, (sp, _) => CreateDriver(sp));
+        }
 
-        // Create a Neo4j driver instance with the configured endpoint and credentials.
-        var driver = GraphDatabase.Driver(settings.Endpoint, settings.Credentials);
+        IDriver CreateDriver(IServiceProvider _)
+        {
+            ArgumentNullException.ThrowIfNull(settings.Endpoint);
+            ArgumentNullException.ThrowIfNull(settings.Credentials);
 
-        // Register the driver as a singleton service.
-        builder.Services.AddSingleton(driver);
+            return GraphDatabase.Driver(settings.Endpoint, settings.Credentials);
+        }
+
+        if (settings.DisableHealthChecks is false)
+        {
+            builder.Services.AddHealthChecks()
+                .AddCheck<Neo4jHealthCheck>(
+                    name: serviceKey is null ? "Neo4j" : $"Neo4j_{connectionName}",
+                    failureStatus: default,
+                    tags: []);
+        }        
     }
 }

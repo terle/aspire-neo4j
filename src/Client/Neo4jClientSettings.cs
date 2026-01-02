@@ -27,6 +27,11 @@ public sealed class Neo4jClientSettings
     public IAuthToken? Credentials { get; set; }
 
     /// <summary>
+    /// Gets or sets a boolean value that indicates whether the health check is disabled.
+    /// </summary>
+    public bool DisableHealthChecks { get; set; } = false;
+
+    /// <summary>
     /// Parses the provided connection string to extract the Neo4j server endpoint and credentials.
     /// </summary>
     /// <param name="connectionString">The connection string containing the endpoint and optional credentials.</param>

@@ -23,11 +23,11 @@ public static class Neo4jResourceBuilderExtensions
     /// <returns>An <see cref="IResourceBuilder{Neo4jResource}"/> for further configuration.</returns>
     public static IResourceBuilder<Neo4jResource> AddNeo4j(
         this IDistributedApplicationBuilder builder,
-        string name,
+        [ResourceName] string name,
         IResourceBuilder<ParameterResource>? neo4jUser = null,
         IResourceBuilder<ParameterResource>? neo4jPassword = null,
-        int? boltPort = 7687,
-        int? httpPort = 7474)
+        int? boltPort = null,
+        int? httpPort = null)
     {
         // Create or retrieve the password parameter.
         var passwordParameter = neo4jPassword?.Resource ??
@@ -42,15 +42,20 @@ public static class Neo4jResourceBuilderExtensions
             .WithImage(Neo4jContainerImageTags.Image)
             .WithImageRegistry(Neo4jContainerImageTags.Registry)
             .WithImageTag(Neo4jContainerImageTags.Tag)
-            .WithEnvironment(AuthEnvVarName, $"{graphDb.UsernameParameter}/{graphDb.PasswordParameter}")
+            .WithEnvironment(context =>
+            {
+                // Neo4j expects `NEO4J_AUTH` as `username/password`.
+                context.EnvironmentVariables[AuthEnvVarName] =
+                    ReferenceExpression.Create($"{graphDb.UserNameReference}/{graphDb.PasswordParameter}");
+            })
             .WithEndpoint(
-                        targetPort: boltPort,
-                        port: 7687,
-                        name: Neo4jResource.BoltEndpointName)
+                targetPort: 7687,
+                port: boltPort,
+                name: Neo4jResource.BoltEndpointName)
             .WithHttpEndpoint(
-                        targetPort: httpPort,
-                        port: 7474,
-                        name: Neo4jResource.HttpEndpointName);
+                targetPort: 7474,
+                port: httpPort,
+                name: Neo4jResource.HttpEndpointName);
     }
 }
 
