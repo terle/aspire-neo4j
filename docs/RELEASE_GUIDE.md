@@ -18,7 +18,7 @@ We maintain two NuGet packages:
    ```
    ```xml
    <PropertyGroup>
-     <Version>2.0.0</Version>
+     <Version>3.1.0</Version>
    </PropertyGroup>
    ```
 
@@ -26,12 +26,12 @@ We maintain two NuGet packages:
    ```bash
    git add src/Client/NorthernNerds.Aspire.Neo4j.csproj
    git add src/Hosting/NorthernNerds.Aspire.Hosting.Neo4j.csproj
-   git commit -m "Update version to 2.0.0"
+   git commit -m "Update version to 3.1.0"
    ```
 3. **Create and Push Tag**:
    ```bash
-   git tag v2.0.0
-   git push origin v2.0.0
+   git tag v3.1.0
+   git push origin v3.1.0
    ```
 
 4. **Monitor Release**:

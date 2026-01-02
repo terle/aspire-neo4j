@@ -6,7 +6,7 @@ This is a **dual-package .NET Aspire integration** for Neo4j graph database:
 - **NorthernNerds.Aspire.Neo4j** (`src/Client/`) - Client library for service projects
 - **NorthernNerds.Aspire.Hosting.Neo4j** (`src/Hosting/`) - AppHost/orchestration library
 
-Both packages target .NET 9.0 and must maintain **version parity** (always release together with same version).
+Both packages target .NET 10.0 and must maintain **version parity** (always release together with same version).
 
 ## Architecture Patterns
 
@@ -109,8 +109,8 @@ Use the example app (`example/AspireApp1/`):
 
 ## Integration Points
 
-- **Aspire.Hosting** (v9.0.0) - Hosting package dependency
-- **Neo4j.Driver** (v5.25.0) - Client package dependency  
+- **Aspire.Hosting** (v13.1.0) - Hosting package dependency
+- **Neo4j.Driver** (v5.28.4) - Client package dependency  
 - **Microsoft.Extensions.Diagnostics.HealthChecks** - Client health checks
 - **OpenTelemetry** (via AspNetCore.OpenTelemetry) - Client metrics/tracing
 
