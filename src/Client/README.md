@@ -11,6 +11,13 @@
 - Automatic injection of configured `IDriver`
 - Integration with Aspire service discovery
 
+## Release notes
+
+### 3.0.0 (since v2.0.0)
+- Upgraded to .NET 10 and .NET Aspire 13.1
+- Added health checks (enabled by default; configurable via `Neo4jClientSettings.DisableHealthChecks`)
+- Improved DI registration to support multiple connections (singleton/keyed singleton)
+
 ## Getting Started
 
 ### Installation

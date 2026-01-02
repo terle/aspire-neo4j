@@ -58,3 +58,17 @@ This project is licensed under the MIT License.
 ## About Northern Nerds
 
 Northern Nerds is a one-man freelance software company dedicated to creating high-quality software solutions and tools. Follow our work to stay updated on the latest projects and contributions.
+
+## Release notes
+
+### 3.0.0 (since v2.0.0)
+
+**NorthernNerds.Aspire.Neo4j (Client)**
+- Upgraded to .NET 10 and .NET Aspire 13.1
+- Added health checks (enabled by default; configurable via `Neo4jClientSettings.DisableHealthChecks`)
+- Improved DI registration to support multiple connections (singleton/keyed singleton)
+
+**NorthernNerds.Aspire.Hosting.Neo4j (Hosting)**
+- Upgraded to .NET 10 and .NET Aspire 13.1
+- Enhanced `AddNeo4j` hosting integration (`[ResourceName]`, nullable ports, improved `NEO4J_AUTH` handling, endpoint refactor)
+- Example updated to wait for Neo4j readiness
