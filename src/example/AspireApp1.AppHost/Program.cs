@@ -9,6 +9,7 @@ var neo4jDb = builder.AddNeo4j("graph-db", neo4jUser, neo4jPass);
 
 builder.AddProject<Projects.AspireApp1_Web>("webfrontend")
     .WithExternalHttpEndpoints()
-    .WithReference(neo4jDb);
+    .WithReference(neo4jDb)
+    .WaitFor(neo4jDb);
 
 builder.Build().Run();
