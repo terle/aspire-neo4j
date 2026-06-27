@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Movies\movies.cypher" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Client\NorthernNerds.Aspire.Neo4j.csproj" />
     <ProjectReference Include="..\AspireApp1.ServiceDefaults\AspireApp1.ServiceDefaults.csproj" />
   </ItemGroup>

@@ -1,0 +1,143 @@
+@page "/movies"
+@rendermode InteractiveServer
+@using AspireApp1.Web.Movies
+@inject MovieGraphService Graph
+
+<PageTitle>Movies — Neo4j</PageTitle>
+
+<h1>Neo4j Movies graph</h1>
+
+<p>
+    The canonical Neo4j <a href="https://neo4j.com/docs/getting-started/appendix/example-data/" target="_blank">Movies</a>
+    sample graph, loaded and queried through the Aspire-configured <code>IDriver</code>.
+</p>
+
+@if (movies is null)
+{
+    <p><em>Loading the graph…</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-5">
+            <h2>Movies (@movies.Count)</h2>
+            <ul class="list-group">
+                @foreach (var movie in movies)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                        style="cursor: pointer; @(selected?.Title == movie.Title ? "font-weight:bold;" : "")"
+                        @onclick="() => SelectAsync(movie.Title)">
+                        <span>@movie.Title @(movie.Released is { } y ? $"({y})" : "")</span>
+                        <span class="badge bg-primary rounded-pill">@movie.CastCount cast</span>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="col-md-7">
+            @if (selected is not null)
+            {
+                <h2>@selected.Title @(selected.Released is { } y ? $"({y})" : "")</h2>
+                @if (!string.IsNullOrWhiteSpace(selected.Tagline))
+                {
+                    <p><em>“@selected.Tagline”</em></p>
+                }
+                @if (selected.Directors.Count > 0)
+                {
+                    <p><strong>Directed by:</strong> @string.Join(", ", selected.Directors)</p>
+                }
+                <h3>Cast</h3>
+                <ul>
+                    @foreach (var member in selected.Cast)
+                    {
+                        <li>
+                            @member.Name
+                            @if (member.Roles.Count > 0)
+                            {
+                                <text> — as @string.Join(", ", member.Roles)</text>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p><em>Select a movie to see its cast and directors.</em></p>
+            }
+
+            <hr />
+
+            <h3>Six degrees of co-stars</h3>
+            <p>Find the shortest chain of shared movies between two actors.</p>
+            <div class="row g-2">
+                <div class="col">
+                    <input class="form-control" @bind="fromActor" placeholder="e.g. Keanu Reeves" />
+                </div>
+                <div class="col">
+                    <input class="form-control" @bind="toActor" placeholder="e.g. Tom Hanks" />
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" @onclick="FindPathAsync" disabled="@searching">
+                        @(searching ? "Searching…" : "Connect")
+                    </button>
+                </div>
+            </div>
+
+            @if (pathMessage is not null)
+            {
+                <p class="mt-2">@pathMessage</p>
+            }
+            @if (path is { Count: > 0 })
+            {
+                <p class="mt-2">@string.Join(" → ", path)</p>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private IReadOnlyList<MovieSummary>? movies;
+    private MovieDetail? selected;
+
+    private string fromActor = "Keanu Reeves";
+    private string toActor = "Tom Hanks";
+    private IReadOnlyList<string>? path;
+    private string? pathMessage;
+    private bool searching;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Graph.EnsureSeededAsync();
+        movies = await Graph.GetMoviesAsync();
+    }
+
+    private async Task SelectAsync(string title)
+    {
+        selected = await Graph.GetMovieAsync(title);
+    }
+
+    private async Task FindPathAsync()
+    {
+        path = null;
+        pathMessage = null;
+
+        if (string.IsNullOrWhiteSpace(fromActor) || string.IsNullOrWhiteSpace(toActor))
+        {
+            pathMessage = "Enter two actor names.";
+            return;
+        }
+
+        searching = true;
+        try
+        {
+            path = await Graph.FindCoStarPathAsync(fromActor.Trim(), toActor.Trim());
+            pathMessage = path is null
+                ? "No connection found (check the spelling — names are case-sensitive)."
+                : $"{(path.Count - 1) / 2} hop(s):";
+        }
+        finally
+        {
+            searching = false;
+        }
+    }
+}
