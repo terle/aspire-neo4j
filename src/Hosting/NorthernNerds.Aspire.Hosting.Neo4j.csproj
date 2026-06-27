@@ -7,7 +7,7 @@
 
 		<!-- NuGet Package Metadata -->
 		<PackageId>NorthernNerds.Aspire.Hosting.Neo4j</PackageId>
-		<Version>3.0.0</Version>
+		<Version>3.1.0</Version>
 		<Authors>terle,Northern Nerds</Authors>
 		<Company>Northern Nerds</Company>
 		<Description>An unofficial .NET Aspire hosting integration for Neo4j that provides container management and resource configuration. Part of the NorthernNerds.Aspire.Neo4j suite for seamless Neo4j integration in Aspire applications.</Description>
@@ -29,7 +29,7 @@
 		<!-- Additional Metadata -->
 		<PackageProjectUrl>https://github.com/terle/aspire-neo4j</PackageProjectUrl>
 		<PackageIcon>neo4j-icon.png</PackageIcon>
-		<Copyright>Copyright © Northern Nerds 2025</Copyright>
+		<Copyright>Copyright © Northern Nerds 2025-2026</Copyright>
 		<Title>Neo4j Hosting Integration for .NET Aspire</Title>
 
 		<!-- Package Generation -->
@@ -39,6 +39,13 @@
 
 		<!--Release Notes-->
 		<PackageReleaseNotes>
+			3.1.0 (since v3.0.0)
+			- Updated to .NET Aspire 13.4
+			- Added an HTTP health check on the Neo4j endpoint so WaitFor(...) waits for real readiness
+			- Added WithDataVolume and WithDataBindMount for data persistence (mounts /data)
+			- Added argument guard clauses to AddNeo4j
+			- Bumped the Neo4j container image to the 5.26 LTS
+
 			3.0.0 (since v2.0.0)
 			- Upgraded to .NET 10 and .NET Aspire 13.1
 			- Enhanced AddNeo4j hosting integration ([ResourceName], nullable ports, improved NEO4J_AUTH handling, endpoint refactor)
@@ -52,7 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Aspire.Hosting" Version="13.1.0" />
+		<PackageReference Include="Aspire.Hosting" Version="13.4.6" />
 	</ItemGroup>
 
 </Project>

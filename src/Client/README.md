@@ -13,6 +13,10 @@
 
 ## Release notes
 
+### 3.1.0 (since v3.0.0)
+- Updated for the .NET Aspire 13.4 release
+- Removed the unused `OpenTelemetry.Extensions.Hosting` dependency
+
 ### 3.0.0 (since v2.0.0)
 - Upgraded to .NET 10 and .NET Aspire 13.1
 - Added health checks (enabled by default; configurable via `Neo4jClientSettings.DisableHealthChecks`)
