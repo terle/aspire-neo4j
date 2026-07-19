@@ -61,6 +61,26 @@ Northern Nerds is a one-man freelance software company dedicated to creating hig
 
 ## Release notes
 
+### 3.1.0 (since v3.0.0)
+
+**NorthernNerds.Aspire.Neo4j (Client)**
+- Updated for the .NET Aspire 13.4 release
+- Removed the unused `OpenTelemetry.Extensions.Hosting` dependency
+
+**NorthernNerds.Aspire.Hosting.Neo4j (Hosting)**
+- Updated to .NET Aspire 13.4
+- Added an HTTP health check on the Neo4j endpoint so `WaitFor(...)` waits for real readiness
+- Added `WithDataVolume` and `WithDataBindMount` for data persistence (mounts `/data`)
+- Added argument guard clauses to `AddNeo4j`
+- Bumped the Neo4j container image to the 5.26 LTS
+
+Thanks to [@joshmakestuff](https://github.com/joshmakestuff) for this contribution! ([#7](https://github.com/terle/aspire-neo4j/pull/7))
+
+**Example app**
+- Added an interactive Movies sample (`/movies`) demonstrating cast/director queries and a "six degrees of co-stars" shortest-path search, replacing the old trivial demo as the featured example
+
+Thanks again to [@joshmakestuff](https://github.com/joshmakestuff) for this contribution! ([#8](https://github.com/terle/aspire-neo4j/pull/8))
+
 ### 3.0.0 (since v2.0.0)
 
 **NorthernNerds.Aspire.Neo4j (Client)**

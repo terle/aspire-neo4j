@@ -21,6 +21,7 @@
 - Added `WithDataVolume` and `WithDataBindMount` for data persistence (mounts `/data`)
 - Added argument guard clauses to `AddNeo4j`
 - Bumped the Neo4j container image to the 5.26 LTS
+- Thanks to [@joshmakestuff](https://github.com/joshmakestuff) for this contribution! ([#7](https://github.com/terle/aspire-neo4j/pull/7))
 
 ### 3.0.0 (since v2.0.0)
 - Upgraded to .NET 10 and .NET Aspire 13.1
