@@ -1,5 +1,6 @@
 using AspireApp1.Web;
 using AspireApp1.Web.Components;
+using AspireApp1.Web.Movies;
 using NorthernNerds.Aspire.Neo4j;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddOutputCache();
 
 builder.AddNeo4jClient("graph-db");
+builder.Services.AddScoped<MovieGraphService>();
 
 var app = builder.Build();
 
