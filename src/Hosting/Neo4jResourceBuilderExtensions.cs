@@ -29,6 +29,9 @@ public static class Neo4jResourceBuilderExtensions
         int? boltPort = null,
         int? httpPort = null)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+        ArgumentException.ThrowIfNullOrEmpty(name);
+
         // Create or retrieve the password parameter.
         var passwordParameter = neo4jPassword?.Resource ??
             ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter(
@@ -55,7 +58,50 @@ public static class Neo4jResourceBuilderExtensions
             .WithHttpEndpoint(
                 targetPort: 7474,
                 port: httpPort,
-                name: Neo4jResource.HttpEndpointName);
+                name: Neo4jResource.HttpEndpointName)
+            // Probe the Neo4j HTTP endpoint so WaitFor(...) only completes once the
+            // server is actually accepting connections, not merely when the container starts.
+            .WithHttpHealthCheck(endpointName: Neo4jResource.HttpEndpointName);
+    }
+
+    /// <summary>
+    /// Adds a named volume for the data folder to a <see cref="Neo4jResource"/> so the graph
+    /// database survives container restarts.
+    /// </summary>
+    /// <param name="builder">The resource builder.</param>
+    /// <param name="name">The name of the volume. Defaults to an auto-generated name.</param>
+    /// <param name="isReadOnly">A flag that indicates if the data volume is read-only.</param>
+    /// <returns>The <see cref="IResourceBuilder{Neo4jResource}"/> for further configuration.</returns>
+    public static IResourceBuilder<Neo4jResource> WithDataVolume(
+        this IResourceBuilder<Neo4jResource> builder,
+        string? name = null,
+        bool isReadOnly = false)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        return builder.WithVolume(
+            name ?? VolumeNameGenerator.Generate(builder, "data"),
+            Neo4jContainerImageTags.DataPath,
+            isReadOnly);
+    }
+
+    /// <summary>
+    /// Adds a bind mount for the data folder to a <see cref="Neo4jResource"/> so the graph
+    /// database is persisted to a host directory.
+    /// </summary>
+    /// <param name="builder">The resource builder.</param>
+    /// <param name="source">The source directory on the host to mount into the container.</param>
+    /// <param name="isReadOnly">A flag that indicates if the data bind mount is read-only.</param>
+    /// <returns>The <see cref="IResourceBuilder{Neo4jResource}"/> for further configuration.</returns>
+    public static IResourceBuilder<Neo4jResource> WithDataBindMount(
+        this IResourceBuilder<Neo4jResource> builder,
+        string source,
+        bool isReadOnly = false)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+        ArgumentNullException.ThrowIfNull(source);
+
+        return builder.WithBindMount(source, Neo4jContainerImageTags.DataPath, isReadOnly);
     }
 }
 
@@ -70,6 +116,9 @@ internal static class Neo4jContainerImageTags
     // The name of the Neo4j container image.
     internal const string Image = "neo4j";
 
-    // The tag of the Neo4j container image.
-    internal const string Tag = "5.23.0-community-bullseye";
+    // The tag of the Neo4j container image (5.26 is the current Neo4j 5 LTS release).
+    internal const string Tag = "5.26.24-community-bullseye";
+
+    // The in-container path where Neo4j persists its graph data.
+    internal const string DataPath = "/data";
 }

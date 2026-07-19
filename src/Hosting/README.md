@@ -9,9 +9,18 @@
 ## Features
 - Add Neo4j as a container resource in your Aspire AppHost
 - Configure Neo4j connection settings through Aspire parameters
+- Built-in HTTP health check so `WaitFor(...)` waits for Neo4j to be ready
+- Data persistence via `WithDataVolume` / `WithDataBindMount`
 - Automatic container management and configuration
 
 ## Release notes
+
+### 3.1.0 (since v3.0.0)
+- Updated to .NET Aspire 13.4
+- Added an HTTP health check on the Neo4j endpoint so `WaitFor(...)` waits for real readiness
+- Added `WithDataVolume` and `WithDataBindMount` for data persistence (mounts `/data`)
+- Added argument guard clauses to `AddNeo4j`
+- Bumped the Neo4j container image to the 5.26 LTS
 
 ### 3.0.0 (since v2.0.0)
 - Upgraded to .NET 10 and .NET Aspire 13.1
@@ -34,8 +43,17 @@ var builder = DistributedApplication.CreateBuilder(args);
 var neo4jPass = builder.AddParameter("neo4j-pass", secret: true);
 var neo4jUser = builder.AddParameter("neo4j-user", secret: true);
 
-var neo4jDb = builder.AddNeo4j("graph-db", neo4jUser, neo4jPass);
+var neo4jDb = builder.AddNeo4j("graph-db", neo4jUser, neo4jPass)
+    .WithDataVolume(); // persist the graph across restarts
+
+builder.AddProject<Projects.MyApi>("api")
+    .WithReference(neo4jDb)
+    .WaitFor(neo4jDb); // gated on the built-in Neo4j health check
 ```
+
+> `AddNeo4j` registers an HTTP health check against the Neo4j endpoint, so `WaitFor(neo4jDb)`
+> blocks dependents until Neo4j is actually accepting connections. Use `WithDataBindMount("./data")`
+> instead of `WithDataVolume()` to persist to a host directory.
 
 Configure parameters in `appsettings.json`:
 ```json

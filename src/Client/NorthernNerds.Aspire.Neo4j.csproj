@@ -7,7 +7,7 @@
 
 		<!-- NuGet Package Metadata -->
 		<PackageId>NorthernNerds.Aspire.Neo4j</PackageId>
-		<Version>3.0.0</Version>
+		<Version>3.1.0</Version>
 		<Authors>terle,Northern Nerds</Authors>
 		<Company>Northern Nerds</Company>
 		<Description>An unofficial .NET Aspire integration for Neo4j that provides client configuration and dependency injection of the Neo4j IDriver. Part of the NorthernNerds.Aspire.Neo4j suite for seamless Neo4j integration in Aspire applications.</Description>
@@ -30,7 +30,7 @@
 		<!-- Additional Metadata -->
 		<PackageProjectUrl>https://github.com/terle/aspire-neo4j</PackageProjectUrl>
 		<PackageIcon>neo4j-icon.png</PackageIcon>
-		<Copyright>Copyright © Northern Nerds 2025</Copyright>
+		<Copyright>Copyright © Northern Nerds 2025-2026</Copyright>
 		<Title>Neo4j Client Integration for .NET Aspire</Title>
 
 		<!-- Package Generation -->
@@ -40,6 +40,10 @@
 
 		<!--Release Notes-->
 		<PackageReleaseNotes>
+			3.1.0 (since v3.0.0)
+			- Updated for the .NET Aspire 13.4 release
+			- Removed the unused OpenTelemetry.Extensions.Hosting dependency
+
 			3.0.0 (since v2.0.0)
 			- Upgraded to .NET 10 and .NET Aspire 13.1
 			- Added health checks (enabled by default; configurable via Neo4jClientSettings.DisableHealthChecks)
@@ -57,7 +61,6 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.1" />
-		<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0" />
 		<PackageReference Include="Neo4j.Driver" Version="5.28.4" />
 	</ItemGroup>
 
